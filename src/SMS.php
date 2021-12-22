@@ -1,11 +1,14 @@
 <?php
 namespace Gkimani\ZettatelPhpSdk;
 
+use GuzzleHttp\Psr7\Request;
+
 class SMS extends Service
 {
 	public function __construct($client, $userId, $password, $apiKey, $senderid)
 	{
-		parent::__construct($client, $userId, $password, $senderid, $apiKey);		
+		parent::__construct($client, $userId, $password, $apiKey, $senderid);		
+		
 	}
 
 	public function send($options)
@@ -25,10 +28,14 @@ class SMS extends Service
 			'mobile' 	=> implode(",", $options['mobile']),
 			'msg' 	    => $options['msg'],
             'msgType' => 'text',
-            'sendMethod' 	=> 'quick'
+            'sendMethod' 	=> 'quick',
+			'output'=> 'json'
 		];
 
-		$response = $this->client->post('smsbatch', ['form_params' => $data ]);
+		//$response = $this->client->post('send', ['form_params' => $data ]);
+
+		$response = $this->client->request('POST', 'send', ['form_params' => $data]);
+		
 
 		return $this->success($response);
 	}

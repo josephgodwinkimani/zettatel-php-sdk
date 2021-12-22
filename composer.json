@@ -4,6 +4,7 @@
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "^7.4",
+        "guzzlehttp/psr7": "^1.8.2",
         "php": "^7.4"
     },
     "require-dev": {

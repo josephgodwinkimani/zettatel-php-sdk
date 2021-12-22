@@ -10,7 +10,7 @@ class Zettatel
 	public function __construct($userId, $password, $apiKey, $senderid)
 	{	
 
-		$this->Url = "https://portal.zettatel.com/SMSApi/send"; //baseurl
+		$this->Url = "https://portal.zettatel.com/SMSApi/"; //baseurl
 
 		$this->userId = $userId;
 		$this->apiKey = $apiKey;
@@ -23,8 +23,7 @@ class Zettatel
 			'headers' => [
 				'apikey' => $this->apiKey,
                 "cache-control: no-cache",
-				'Content-Type' => 'application/x-www-form-urlencoded',
-				'Accept' => 'application/json'
+				'Content-Type' => 'application/x-www-form-urlencoded'				
 			]
 		]);
 
