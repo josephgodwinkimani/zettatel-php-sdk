@@ -4,9 +4,9 @@ require 'vendor/autoload.php';
 
 use Gkimani\ZettatelPhpSdk;
 
-$userId = "ghateam";
-$apiKey = "01bfac991f3097230232e8b7bb8bcb6a9f6854a2";
-$password = "Vm2YPfS8";
+$userId = "xxxxx";
+$apiKey = "xxxxx";
+$password = "xxxxx";
 $senderid = "Notify_MSG";
 
 $Zettatel = new Gkimani\ZettatelPhpSdk\Zettatel($userId, $password, $apiKey, $senderid);
