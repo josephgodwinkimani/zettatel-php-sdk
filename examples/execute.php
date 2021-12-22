@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     $mobile = $_POST['mobile'];
     $sms = $Zettatel->sms();
     $response = $sms->send([
-        'mobile' => $mobile,       
+        'mobile' => $mobile,
         'msg' => 'Welcome to Awesome Company',
     ]);
     header('Content-Type: application/json; charset=UTF-8');
