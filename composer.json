@@ -1,6 +1,6 @@
 {
     "name": "gkimani/zettatel-php-sdk",
-    "description": "Zettatel SMS PHP SDK",
+    "description": "Unofficial PHP SDK for Zettatel SMS API",
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "^7.4",
