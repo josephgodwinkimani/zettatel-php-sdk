@@ -1,0 +1,162 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\SMS\\:\\:__construct\\(\\) has parameter \\$apiKey with no type specified\\.$#"
+			count: 1
+			path: src/SMS.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\SMS\\:\\:__construct\\(\\) has parameter \\$client with no type specified\\.$#"
+			count: 1
+			path: src/SMS.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\SMS\\:\\:__construct\\(\\) has parameter \\$password with no type specified\\.$#"
+			count: 1
+			path: src/SMS.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\SMS\\:\\:__construct\\(\\) has parameter \\$senderid with no type specified\\.$#"
+			count: 1
+			path: src/SMS.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\SMS\\:\\:__construct\\(\\) has parameter \\$userId with no type specified\\.$#"
+			count: 1
+			path: src/SMS.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\SMS\\:\\:send\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/SMS.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\SMS\\:\\:send\\(\\) has parameter \\$options with no type specified\\.$#"
+			count: 1
+			path: src/SMS.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\Service\\:\\:__construct\\(\\) has parameter \\$apiKey with no type specified\\.$#"
+			count: 1
+			path: src/Service.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\Service\\:\\:__construct\\(\\) has parameter \\$client with no type specified\\.$#"
+			count: 1
+			path: src/Service.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\Service\\:\\:__construct\\(\\) has parameter \\$password with no type specified\\.$#"
+			count: 1
+			path: src/Service.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\Service\\:\\:__construct\\(\\) has parameter \\$senderid with no type specified\\.$#"
+			count: 1
+			path: src/Service.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\Service\\:\\:__construct\\(\\) has parameter \\$userId with no type specified\\.$#"
+			count: 1
+			path: src/Service.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\Service\\:\\:error\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Service.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\Service\\:\\:error\\(\\) has parameter \\$data with no type specified\\.$#"
+			count: 1
+			path: src/Service.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\Service\\:\\:success\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Service.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\Service\\:\\:success\\(\\) has parameter \\$data with no type specified\\.$#"
+			count: 1
+			path: src/Service.php
+
+		-
+			message: "#^Property Gkimani\\\\ZettatelPhpSdk\\\\Service\\:\\:\\$apiKey has no type specified\\.$#"
+			count: 1
+			path: src/Service.php
+
+		-
+			message: "#^Property Gkimani\\\\ZettatelPhpSdk\\\\Service\\:\\:\\$client has no type specified\\.$#"
+			count: 1
+			path: src/Service.php
+
+		-
+			message: "#^Property Gkimani\\\\ZettatelPhpSdk\\\\Service\\:\\:\\$password has no type specified\\.$#"
+			count: 1
+			path: src/Service.php
+
+		-
+			message: "#^Property Gkimani\\\\ZettatelPhpSdk\\\\Service\\:\\:\\$senderid has no type specified\\.$#"
+			count: 1
+			path: src/Service.php
+
+		-
+			message: "#^Property Gkimani\\\\ZettatelPhpSdk\\\\Service\\:\\:\\$userId has no type specified\\.$#"
+			count: 1
+			path: src/Service.php
+
+		-
+			message: "#^Access to an undefined property Gkimani\\\\ZettatelPhpSdk\\\\Zettatel\\:\\:\\$apiKey\\.$#"
+			count: 2
+			path: src/Zettatel.php
+
+		-
+			message: "#^Access to an undefined property Gkimani\\\\ZettatelPhpSdk\\\\Zettatel\\:\\:\\$client\\.$#"
+			count: 2
+			path: src/Zettatel.php
+
+		-
+			message: "#^Access to an undefined property Gkimani\\\\ZettatelPhpSdk\\\\Zettatel\\:\\:\\$password\\.$#"
+			count: 2
+			path: src/Zettatel.php
+
+		-
+			message: "#^Access to an undefined property Gkimani\\\\ZettatelPhpSdk\\\\Zettatel\\:\\:\\$senderid\\.$#"
+			count: 2
+			path: src/Zettatel.php
+
+		-
+			message: "#^Access to an undefined property Gkimani\\\\ZettatelPhpSdk\\\\Zettatel\\:\\:\\$userId\\.$#"
+			count: 2
+			path: src/Zettatel.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\Zettatel\\:\\:__construct\\(\\) has parameter \\$apiKey with no type specified\\.$#"
+			count: 1
+			path: src/Zettatel.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\Zettatel\\:\\:__construct\\(\\) has parameter \\$password with no type specified\\.$#"
+			count: 1
+			path: src/Zettatel.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\Zettatel\\:\\:__construct\\(\\) has parameter \\$senderid with no type specified\\.$#"
+			count: 1
+			path: src/Zettatel.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\Zettatel\\:\\:__construct\\(\\) has parameter \\$userId with no type specified\\.$#"
+			count: 1
+			path: src/Zettatel.php
+
+		-
+			message: "#^Method Gkimani\\\\ZettatelPhpSdk\\\\Zettatel\\:\\:sms\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Zettatel.php
+
+		-
+			message: "#^Property Gkimani\\\\ZettatelPhpSdk\\\\Zettatel\\:\\:\\$Url has no type specified\\.$#"
+			count: 1
+			path: src/Zettatel.php
+

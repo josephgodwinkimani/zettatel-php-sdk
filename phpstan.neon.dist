@@ -1,0 +1,10 @@
+includes:
+    - phpstan-baseline.neon  
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon 
+
+parameters:
+    level: 7
+    reportUnmatchedIgnoredErrors: false
+    paths:
+        - src
+        - tests
