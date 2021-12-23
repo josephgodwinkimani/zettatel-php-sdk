@@ -1,116 +1,50 @@
-version: 1.0.0+{build}
+build: false
+platform:
+  - x64
+clone_folder: c:\projects\php-project-workspace
 
+
+## Build matrix for lowest and highest possible targets
 environment:
   matrix:
-    - PHP_VERSION: 7.0
-      VC_VERSION: 14
-      BUILD_TYPE: Win32
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
+  - dependencies: lowest
+    php_ver_target: 7.4
+  - dependencies: highest
+    php_ver_target: 7.4
+  - dependencies: highest
+    php_ver_target: 7.4
 
-    - PHP_VERSION: 7.3
-      VC_VERSION: 15
-      BUILD_TYPE: Win32
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-
-    - PHP_VERSION: 7.3
-      VC_VERSION: 15
-      BUILD_TYPE: nts-Win32
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-
-    # Temporary disabled, because on Windows with php 8 PSR extension always crashes.
-    # - PHP_VERSION: 8.0
-    #   VC_VERSION: 16
-    #   BUILD_TYPE: Win32
-    #   APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
-
-    # - PHP_VERSION: 8.0
-    #   VC_VERSION: 16
-    #   BUILD_TYPE: nts-Win32
-    #   APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
-
-  PHP_SDK_VERSION: 2.1.9
-  PECL_PSR_VERSION: 0.6.1
-  ZEPHIR_PARSER_VERSION: 1.3.5
-  ZEPHIR_PARSER_RELEASE: 538
-  ZEPHIR_VERSION: 0.11.8
-
-matrix:
-  fast_finish: true
-
+## Cache composer bits
 cache:
-  - 'C:\Downloads -> .appveyor.yml'
+    - '%LOCALAPPDATA%\Composer\files -> composer.lock'
 
-clone_depth: 1
-clone_folder: C:\Projects\php-appveyor
-
-platform:
-  - x86
-  - x64
-
-branches:
-  only:
-    - master
-    - development
-
+## Set up environment varriables
 init:
-  - ps: $DebugPreference = "SilentlyContinue" # Continue
+    - SET PATH=C:\Program Files\OpenSSL;c:\tools\php;%PATH%
+    - SET COMPOSER_NO_INTERACTION=1
+    - SET PHP=1
+    - SET ANSICON=121x90 (121x90)
 
+## Install PHP and composer, and run the appropriate composer command
 install:
-  - ps: Import-Module .\php-appveyor.psm1
+    - IF EXIST c:\tools\php (SET PHP=0)
+    - ps: appveyor-retry cinst -y php --version ((choco search php --exact --all-versions -r | select-string -pattern $Env:php_ver_target | Select-Object -first 1) -replace '[php|]','')
+    - cd c:\tools\php
+    - IF %PHP%==1 copy php.ini-production php.ini /Y
+    - IF %PHP%==1 echo date.timezone="UTC" >> php.ini
+    - IF %PHP%==1 echo extension_dir=ext >> php.ini
+    - IF %PHP%==1 echo extension=php_openssl.dll >> php.ini
+    - IF %PHP%==1 echo extension=php_mbstring.dll >> php.ini
+    - IF %PHP%==1 echo extension=php_fileinfo.dll >> php.ini
+    - IF %PHP%==1 echo @php %%~dp0composer.phar %%* > composer.bat
+    - appveyor-retry appveyor DownloadFile https://getcomposer.org/composer.phar
+    - cd c:\projects\php-project-workspace
+    - IF %dependencies%==lowest appveyor-retry composer update --prefer-lowest --no-progress --profile -n
+    - IF %dependencies%==current appveyor-retry composer install --no-progress --profile
+    - IF %dependencies%==highest appveyor-retry composer update --no-progress --profile -n
+    - composer show
 
-  - ps: InstallPhpSdk     $Env:PHP_SDK_VERSION $Env:VC_VERSION $Env:PLATFORM
-  - ps: InstallPhp        $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
-  - ps: InstallPhpDevPack $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
-
-  - ps: TuneUpPhp -DefaultExtensions fileinfo
-  - ps: InstallComposer
-  - ps: InstallZephir -Version $Env:ZEPHIR_VERSION
-
-before_build:
-  - ps: >-
-      InstallPeclExtension `
-        -Name       psr `
-        -Version    $Env:PECL_PSR_VERSION `
-        -PhpVersion $Env:PHP_VERSION `
-        -BuildType  $Env:BUILD_TYPE `
-        -VC         $Env:VC_VERSION `
-        -Platform   $Env:PLATFORM
-
-  - ps: >-
-      InstallZephirParser `
-        -Version    $Env:ZEPHIR_PARSER_VERSION `
-        -BuildId    $Env:ZEPHIR_PARSER_RELEASE `
-        -PhpVersion $Env:PHP_VERSION `
-        -BuildType  $Env:BUILD_TYPE `
-        -VC         $Env:VC_VERSION `
-        -Platform   $Env:PLATFORM
-
-  - ps: EnablePhpExtension -Name psr
-  - ps: EnablePhpExtension -Name zephir_parser -PrintableName "Zephir Parser"
-
-build_script:
-  - C:\php\php.exe --ri psr
-  - C:\php\php.exe --ri "Zephir Parser"
-
+## Run the actual test
 test_script:
-  - ps: .\composer --version
-  - ps: .\zephir --version
-
-after_test:
-  - ps: >-
-      PrepareReleasePackage `
-        -PhpVersion     $Env:PHP_VERSION `
-        -BuildType      $Env:BUILD_TYPE `
-        -Platform       $Env:PLATFORM `
-        -ZipballName    php-appveyor `
-        -ReleaseFiles   LICENSE,README.md `
-        -ConverMdToHtml $true
-
-artifacts:
-  - path: '.\php-appveyor.zip'
-    type: zip
-    name: php-appveyor
-
-on_failure:
-  - ps: >-
-      Get-ChildItem -Path "C:\php\ext\"
+    - cd c:\projects\php-project-workspace
+    - vendor/bin/phpunit -c phpunit.xml.dist
