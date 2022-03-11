@@ -30,10 +30,9 @@ class SMS extends Service
             'output' => 'json',
         ];
 
-        //$response = $this->client->post('send', ['form_params' => $data ]);
+        // $response = $this->client->post('send', ['form_params' => $data ]);
 
-        $response = $this->client->request('POST', 'send', ['form_params' => $data]);       
-      
+        $response = $this->client->request('POST', 'send', ['form_params' => $data]);
 
         return $this->success($response);
     }

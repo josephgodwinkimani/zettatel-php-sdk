@@ -10,14 +10,14 @@ class Zettatel
 
     public function __construct($userId, $password, $apiKey, $senderid)
     {
-        $this->Url = 'https://portal.zettatel.com/SMSApi/'; //baseurl
+        $this->Url = 'https://portal.zettatel.com/SMSApi/'; // baseurl
 
         $this->userId = $userId;
         $this->apiKey = $apiKey;
         $this->password = $password;
         $this->senderid = $senderid;
 
-        $this->client = new Client([ //use guzzlehttp HTTP client library
+        $this->client = new Client([ // use guzzlehttp HTTP client library
             'base_uri' => $this->Url,
             'timeout' => 2.0,
             'headers' => [
