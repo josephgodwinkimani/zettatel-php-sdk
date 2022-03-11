@@ -20,7 +20,7 @@ class SMS extends Service
         }
 
         $data = [
-            'userId' => $this->userId,
+            'userid' => $this->userId,
             'password' => $this->password,
             'senderid' => $this->senderid,
             'mobile' => implode(',', $options['mobile']),
@@ -32,7 +32,8 @@ class SMS extends Service
 
         //$response = $this->client->post('send', ['form_params' => $data ]);
 
-        $response = $this->client->request('POST', 'send', ['form_params' => $data]);
+        $response = $this->client->request('POST', 'send', ['form_params' => $data]);       
+      
 
         return $this->success($response);
     }
