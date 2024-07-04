@@ -7,7 +7,7 @@ $apiKey = 'xxxxx';
 $password = 'xxxxx';
 $senderid = 'Notify_MSG';
 
-$Zettatel = new Gkimani\ZettatelPhpSdk\Zettatel($userId, $password, $apiKey, $senderid);
+$Zettatel = new \Gkimani\ZettatelPhpSdk\Zettatel($userId, $password, $apiKey, $senderid);
 
 if (isset($_POST['submit'])) {
     global $Zettatel;
